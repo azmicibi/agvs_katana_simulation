@@ -1,0 +1,44 @@
+<launch>
+
+<group ns="/katana2">
+  <!-- load katana urdf -->
+
+<arg name="rbtns3" value="/katana2" />
+  <param name="robot_description" command="$(find xacro)/xacro.py '$(find katana_description)/urdf/katana_300_6m180_with_controlbox.urdf.xacro' prefix:=$(arg rbtns3)" />
+
+  <!-- which joints does this katana instance control? (for teleop etc.) -->
+  <rosparam command="load" file="$(find katana)/config/katana_arm_controllers.yaml" />
+
+  <!-- remap katana_gripper_grasp_controller topic names; this has to be stated before loading Gazebo! -->
+  <remap from="posture_action_name" to="gripper_grasp_posture_controller" />
+  <remap from="grasp_query_name" to="gripper_grasp_status" />
+
+  <node name="default_loaded_controllers_spawner"
+    pkg="controller_manager" type="spawner" output="screen" ns="/katana2"
+    args="--wait-for= katana_arm_controller joint_state_controller" />
+
+  <!-- Fake calibration 
+  <node pkg="rostopic" type="rostopic" name="fake_joint_calibration" ns="/katana2"
+    args="pub /calibrated std_msgs/Bool true" />-->
+
+  <!-- push robot_description to factory and spawn robot in gazebo -->
+  <node name="spawn_katana_model" pkg="gazebo_ros" type="spawn_model" args="-x 6.8  -z 0.01 -urdf -param robot_description  -model katana2" respawn="false" output="screen"/>
+
+  <!-- Default Controllers -->
+  <rosparam command="load" file="$(find katana_arm_gazebo)/config/katana_arm_controller.yaml" />
+  <rosparam command="load" file="$(find katana_arm_gazebo)/config/katana_gripper_controller.yaml" />
+  <rosparam command="load" file="$(find katana_arm_gazebo)/config/joint_state_controller.yaml" />
+
+  <!-- Controller manager parameters -->
+  <param name="controller_manager/mechanism_statistics_publish_rate" value="1.0" />
+  <param name="controller_manager/joint_state_publish_rate" value="100.0" />
+
+  <!-- Robot state publisher 
+  <node pkg="robot_state_publisher" type="state_publisher" name="robot_state_publisher">
+    <param name="publish_frequency" type="double" value="50.0" />
+    <param name="tf_prefix" type="string" value="" />
+  </node>-->
+
+</group>
+
+</launch>

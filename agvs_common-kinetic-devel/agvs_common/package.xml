@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<package>
+  <name>agvs_common</name>
+  <version>0.1.3</version>
+  <description>URDF description of the Agvs and Agvs.</description>
+
+  <license>BSD</license>
+
+  <url type="website">http://wiki.ros.org/agvs_common</url>
+  <url type="bugtracker">https://github.com/RobotnikAutomation/agvs_common/issues</url>
+
+  <author email="rguzman@robotnik.es">Roberto Guzmán</author>
+  <author email="rnavarro@robotnik.es">Román Navarro</author>
+  
+  <maintainer email="rguzman@robotnik.es">Roberto Guzmán</maintainer>
+  <maintainer email="rnavarro@robotnik.es">Román Navarro</maintainer>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <run_depend>agvs_description</run_depend>
+
+  <export><metapackage/></export>
+</package>

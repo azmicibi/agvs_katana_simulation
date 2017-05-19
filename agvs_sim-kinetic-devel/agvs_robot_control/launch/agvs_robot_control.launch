@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<launch>
+
+<group ns="/agvs_robot">
+  <rosparam command="load" ns ="/agvs_robot" file="$(find agvs_robot_control)/launch/agvs_robot_control.yaml"/>
+  <node name="agvs_robot_control" ns ="/agvs_robot" pkg="agvs_robot_control" type="agvs_robot_control" output="screen">
+<param name="robotname" value="/agvs_robot" type="string"/>
+</node>
+</group>
+
+<!--
+<group ns="/agvs_robot2">
+  <rosparam command="load" ns ="/agvs_robot2" file="$(find agvs_robot_control)/launch/agvs_robot_control.yaml"/>
+  <node name="agvs_robot_control" ns ="/agvs_robot2" pkg="agvs_robot_control" type="agvs_robot_control" output="screen">
+<param name="robotname" value="/agvs_robot2" type="string"/>
+</node>
+</group>
+
+
+<group ns="/agvs_robot3">
+  <rosparam command="load" ns ="/agvs_robot3" file="$(find agvs_robot_control)/launch/agvs_robot_control.yaml"/>
+  <node name="agvs_robot_control" ns ="/agvs_robot3" pkg="agvs_robot_control" type="agvs_robot_control" output="screen">
+<param name="robotname" value="/agvs_robot3" type="string"/>
+</node>
+</group>-->
+
+</launch>

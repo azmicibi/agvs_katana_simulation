@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<launch>
+<group ns="/katana1">
+<param name="robotname" value="/katana1" type="string"/>
+  <node pkg="katana_tutorials" name="follow_joint_trajectory_client" type="follow_joint_trajectory_client" />
+</group>
+
+<group ns="/katana2">
+<param name="robotname" value="/katana2" type="string"/>
+  <node pkg="katana_tutorials" name="follow_joint_trajectory_client" type="follow_joint_trajectory_client" />
+</group>
+
+</launch>

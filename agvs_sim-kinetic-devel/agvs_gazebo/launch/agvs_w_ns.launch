@@ -1,0 +1,64 @@
+<?xml version="1.0"?>
+<launch>
+
+  <!-- We resume the logic in empty_world.launch, changing only the name of the world to be launched -->
+  <!-- include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="world_name" value="$(find agvs_gazebo)/worlds/agvs.world"/>
+  </include -->
+
+  <!-- roslaunch arguments -->
+  <arg name="debug" default="false"/>
+  <arg name="gui" default="true"/>
+
+
+
+
+<!-- Controllers that come up loaded -->
+  
+  <!-- load world -->
+  <!-- start up empty world -->
+    <include file="$(find gazebo_ros)/launch/empty_world.launch">
+     <!--<arg name="world_name" value="$(find agvs_gazebo)/worlds/agvs_office.world"/>-->
+    <arg name="debug" value="$(arg debug)" />
+    <arg name="gui" value="$(arg gui)" />
+    <arg name="paused" value="false"/>
+    <arg name="use_sim_time" value="true"/>
+    <arg name="headless" value="false"/>
+  </include>
+
+<group ns="/agvs_robot">
+  <!-- Load the URDF into the ROS Parameter Server -->
+  <arg name="rbtns" value="/agvs_robot" />
+  <param  name="robot_description"
+         command="$(find xacro)/xacro.py '$(find agvs_description)/urdf/agvs.urdf.xacro' prefix:=$(arg rbtns)" />
+         
+  <!-- Call a python script to the run a service call to gazebo_ros to spawn a URDF robot -->
+  <node  name="urdf_spawner" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen"
+        args="-urdf -model agvs -param robot_description"/>
+
+
+  <!-- Load joint controller configurations from YAcd .ML file to parameter server -->
+  <rosparam file="$(find agvs_control)/config/agvs_control.yaml" ns ="/agvs_robot" command="load"/>   
+  
+    <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false"
+    output="screen" ns="/agvs_robot/agvs" args="--namespace=/agvs_robot/agvs
+                      joint_back_wheel_controller
+                      joint_front_wheel_controller
+                      joint_back_motor_wheel_controller
+                      joint_front_motor_wheel_controller
+                      joint_elevator_controller
+                      joint_read_state_controller
+                      --shutdown-timeout 1
+                      "/>    
+
+  <!-- once the joint_state is published, run the robot_state_publisher, the namespace has to be adapted --> 
+  <!-- convert joint states to TF transforms for rviz, etc -->
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"
+    respawn="false" output="screen">
+    <remap from="/joint_states" to="/agvs_robot/agvs/joint_states" />
+  </node>
+
+
+</group>
+
+</launch>
