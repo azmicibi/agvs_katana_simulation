@@ -10,3 +10,5 @@ This package contains the configuration files to launch the Gazebo environment a
 ## agvs_robot_control
 This package contains the simulated controlled that interfaces with Gazebo controllers.
 
+## agvs_sim_bringup
+This package contains all the launch and config files to launch all the needed packages to load the simulated environment.

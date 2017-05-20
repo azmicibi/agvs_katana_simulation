@@ -4,3 +4,5 @@ Agvs robot common packages. These packages are share by the simulated and real r
 ## agvs_description
 This package contains the robot model (urdf, meshes, ...).
 
+## agvs_pad
+This package is intended to control the robot by a pad or joystick.
