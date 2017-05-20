@@ -3,11 +3,11 @@
   <!-- ros_control plugin -->
   <gazebo>
     <plugin name="ros_control" filename="libgazebo_ros_control.so">
-       <robotNamespace>/agvs_robot/agvs</robotNamespace>
+       <robotNamespace>/agvs</robotNamespace>
        <controlPeriod>0.001</controlPeriod>
 	   <robotSimType>gazebo_ros_control/DefaultRobotHWSim</robotSimType>
     </plugin>
-  </gazebo> 
+  </gazebo>
 
   <gazebo reference="base_footprint">
     <material>Gazebo/Green</material>
@@ -105,8 +105,7 @@
       </ray>
       <!-- plugin name="gazebo_ros_head_hokuyo_controller" filename="libgazebo_ros_gpu_laser.so" -->
       <plugin name="gazebo_ros_front_sick_controller" filename="libgazebo_ros_laser.so">
-       <robotNamespace>/agvs_robot</robotNamespace>
- 	<topicName>/scan</topicName>
+        <topicName>/scan</topicName>
         <frameName>laser_front</frameName>
       </plugin>
     </sensor>
@@ -149,7 +148,7 @@
 
   <gazebo>
     <plugin name="ros_imu" filename="libgazebo_ros_imu.so">
-       <robotNamespace>/agvs_robot/agvs</robotNamespace>
+       <robotNamespace>/agvs</robotNamespace>
        <topicName>imu_data</topicName>
 		<bodyName>imu_link </bodyName>
 		<serviceName>/imu_service</serviceName>

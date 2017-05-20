@@ -56,7 +56,7 @@ private:
   double l_scale_, a_scale_;
   
 	ros::Publisher vel_pub_;
-
+ros::Publisher vel_pub_2;
   ros::Publisher arm_pub;
   ros::Publisher arm_pub2;
   void publish(double, double);
@@ -76,7 +76,7 @@ AGVSControl::AGVSControl():
 	ph_.param("cube", cube, cube);
 
   vel_pub_ = nh_.advertise<ackermann_msgs::AckermannDriveStamped>("/agvs_robot/command", 1);
-	
+	vel_pub_2 = nh_.advertise<ackermann_msgs::AckermannDriveStamped>("/agvs_robot_control/command", 1);
 	arm_pub = nh_.advertise<std_msgs::String>("/katana1/chatter", 1);
   arm_pub2 = nh_.advertise<std_msgs::String>("/katana2/chatter", 1);
 }
@@ -292,6 +292,7 @@ void AGVSControl::publish(double angular, double linear)
 	ref_msg.drive.steering_angle = angular * a_scale_; //calculate angular speed
 	ref_msg.drive.speed = linear * l_scale_; //calculate linear speed
 	vel_pub_.publish(ref_msg); //publish msg
+  vel_pub_2.publish(ref_msg);
   return;
 }
 

@@ -11,4 +11,18 @@ To birng up simulation:
 * roslaunch agvs_keyboard_controller controller.launch  AGVS can be controlled by agvs_keyboard_controller. Please follow instructions.
 * roslaunch katana_tutorials follow_joint_trajectory_client.launch  This let us send messages arms to perform pick and/or place operations. Will be used for autonomous demo.
 
+AGVS gmapping example:
+* roslaunch agvs_gazebo agvs_office.launch
+* roslaunch agvs_robot_control agvs_robot_control.launch
+* roslaunch agvs_gazebo agvs_gmapping.launch
+
+
 This package uses Robotnik AGVS (http://wiki.ros.org/Robots/Agvs) and Neuronics Katana Arm (http://wiki.ros.org/katana_driver). 
+
+May 2017, Eskişehir Osmangazi Univesity Formal Languages ​​and Automata Mini Project
+
+Team members:
+* Azmi Cibi
+* Erkin Semiz
+* Mahmut Bilgehan Serbest
+* Tahir Özdemir

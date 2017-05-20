@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 2.8.3)
-project(agvs_robot_control)
+project(agvs_robot_control2)
 
 find_package(catkin REQUIRED COMPONENTS
   message_generation
@@ -35,16 +35,14 @@ include_directories(
   ${catkin_INCLUDE_DIRS}
 )
 
-add_executable(agvs_robot_control src/agvs_robot_control.cpp)
+add_executable(agvs_robot_control2 src/agvs_robot_control.cpp)
+add_dependencies(agvs_robot_control2 robotnik_msgs_generate_messages_cpp)
 
-add_dependencies(agvs_robot_control robotnik_msgs_generate_messages_cpp)
-
-target_link_libraries(agvs_robot_control
+target_link_libraries(agvs_robot_control2
    ${catkin_LIBRARIES}
 )
 
 install(
-  TARGETS agvs_robot_control
+  TARGETS agvs_robot_control2
   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
-

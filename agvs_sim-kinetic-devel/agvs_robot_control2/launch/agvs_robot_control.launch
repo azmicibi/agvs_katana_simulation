@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<launch>
+
+  <rosparam command="load" file="$(find agvs_robot_control2)/launch/agvs_robot_control.yaml" />
+
+  <node name="agvs_robot_control" pkg="agvs_robot_control2" type="agvs_robot_control2" output="screen"/>
+  
+</launch>

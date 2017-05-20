@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<launch>
+  <node pkg="gmapping" type="slam_gmapping" args="scan:=/scan" name="slam_gmapping" output="screen"/>
+  <!-- nav_view replaced by rviz visualization and goal setting -->
+  <!-- include file="$(find 2dnav_testing)/rviz.xml"/ -->
+  <node pkg="rviz" type="rviz" args="-d $(find agvs_gazebo)/launch/mapping.rviz" name="rviz" />
+</launch>
+
+
