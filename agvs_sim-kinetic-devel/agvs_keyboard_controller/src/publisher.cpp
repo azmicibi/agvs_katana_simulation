@@ -131,23 +131,30 @@ void AGVSControl::autonomousDemo(){
 		msg.data = "1";
 	  puts("Demo started.");
 		std::string spawnCube = "rosrun gazebo_ros spawn_model -file '"+cube+"' -sdf -x 5.5 -y 0.0 -z 1  -model cube";
+		std::string spawnCube2 = "rosrun gazebo_ros spawn_model -file '"+cube+"' -sdf -x 8 -y 0.0 -z 0.11 -model cube2";
+				
 		while(1){
 			system("rosservice call /gazebo/set_model_state '{model_state: { model_name: agvs, pose: { position: { x: 0.0, y: 0.0 ,z: 0.0 }, orientation: {x: 0.0, y: 0.0, z: 0.0, w: 0.0 } }, twist: { linear: {x: 0.0 , y: 0 ,z: 0 } , angular: { x: 0.0 , y: 0 , z: 0.0 } } , reference_frame: world } }'"); //fix robot position
-
+      system(spawnCube2.c_str());
 			time = ros::Time::now();
+			
 			while(ros::Time::now() - time < ros::Duration(5)){ publish(0, 1);}
 	
 			time = ros::Time::now();
 			arm_pub2.publish(msg);
+			
 			while(ros::Time::now() - time < ros::Duration(16)) {	publish(0, 0); }
 
 			//place a cube
+			system("rosservice call gazebo/delete_model '{model_name: cube2}'");
 			system(spawnCube.c_str());
 			time = ros::Time::now();
+			
 			while(ros::Time::now() - time < ros::Duration(5)) {	publish(0, -1); }
 
 			time = ros::Time::now();				
    	  arm_pub.publish(msg);
+			
 			while(ros::Time::now() - time < ros::Duration(4)) {	publish(0, 0); }
 
 			//delete cube
