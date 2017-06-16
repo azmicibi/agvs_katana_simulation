@@ -1,5 +1,4 @@
-Robotnik AGVS & Neuronics Katana Arm Gazebo Simulation
-===========================
+# Robotnik AGVS & Neuronics Katana Arm Gazebo Simulation
 
 This stack contains essential parts of both of this robots to perform a Gazebo simulation.
 
@@ -22,7 +21,7 @@ This package uses Robotnik AGVS (http://wiki.ros.org/Robots/Agvs) and Neuronics 
 May 2017, Eskişehir Osmangazi Univesity Formal Languages ​​and Automata Mini Project
 
 Team members:
-* Azmi Cibi
-* Erkin Semiz
-* Mahmut Bilgehan Serbest
-* Tahir Özdemir
+ * [Azmi Cibi](https://github.com/azmicibii) 
+ * [Erkin Semiz](https://github.com/ErkinSemiz)
+ * [Tahir Özdemir](http://cv.tahirozdemir.com)
+ * [Mahmut Bilgehan Serbest](https://github.com/Bilgehan-Serbest)
