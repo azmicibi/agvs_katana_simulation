@@ -21,7 +21,7 @@ This package uses Robotnik AGVS (http://wiki.ros.org/Robots/Agvs) and Neuronics 
 May 2017, Eskişehir Osmangazi Univesity Formal Languages ​​and Automata Mini Project
 
 Team members:
- * [Azmi Cibi](https://github.com/azmicibii) 
+ * [Azmi Cibi](https://azmicibi.gitlab.io/cv/) 
  * [Erkin Semiz](https://github.com/ErkinSemiz)
  * [Tahir Özdemir](http://cv.tahirozdemir.com)
  * [Mahmut Bilgehan Serbest](https://github.com/Bilgehan-Serbest)
